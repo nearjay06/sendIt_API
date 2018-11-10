@@ -70,20 +70,11 @@ def fetch_specific_parcel_delivery_order(parcelId):
     return jsonify({"message": 'delivery order does not exit'}), 205
 
 
-
 #Fetch all parcel delivery orders by a specific user GET /users/<userId>/parcels
 @app.route('/api/v1/users/<userId>/parcels',methods=['GET'])
 def get_delivery_order_by_specific_user(userId):
   for order in delivery_orders:
     pass
-
-
-
-
-
-
-
-
 
 
 @app.route('/api/v1/parcels/<int:parcelId>',methods=['PUT'])
