@@ -1,8 +1,5 @@
 
 
-
-
-
 @app.route('/api/v1/parcels/<int:parcelId>',methods=['PUT'])
 def cancel_specific_delivery_order(parcelId):
     service = request.get_json()
