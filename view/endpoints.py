@@ -5,7 +5,7 @@ app = Flask(__name__)
 delivery_orders=[]
 
 @app.route('/api/v1/parcels', methods=['POST'])
-def create_delivery_order():
+def create_delivery_order(self):
     service = request.get_json()
     
     parcelId = len(delivery_orders)+1
@@ -13,7 +13,8 @@ def create_delivery_order():
     parcel_price = service.get('parcel_price')
     delivery_time = service.get('delivery_time')
     userId = len(delivery_orders)+1 
-          
+    currentlocation =service.get('currentlocation')
+    destination = service.get('destination')      
 
     if parcel_name == " ":
       return jsonify({"message":"you cant post an empty string"})
@@ -30,11 +31,12 @@ def create_delivery_order():
 
     for parcel_name in delivery_orders:
        if parcel_name in delivery_orders:
-         return jsonify(Orders.make_delivery_order()),201
+         return jsonify(Orders.make_delivery_order(self)),201
 
-    order = Orders(parcelId,parcel_name,parcel_price,delivery_time,userId)
 
-    delivery_orders.append(order.make_delivery_order())
+    order = Orders(parcelId,parcel_name,parcel_price,delivery_time,userId,currentlocation,destination)
+    
+    delivery_orders.append(order.make_delivery_order(self))
     return jsonify(delivery_orders),201
 
 
@@ -85,7 +87,9 @@ def cancel_specific_delivery_order(parcelId):
     parcel_name = service.get('parcel_name')
     parcel_price = service.get('parcel_price')
     delivery_time = service.get('delivery_time')
-    userId = service.get('userId')  
+    userId = service.get('userId') 
+    currentlocation =service.get('currentlocation')
+    destination = service.get('destination')  
 
     if not parcel_name:
            return jsonify({
