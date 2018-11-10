@@ -1,6 +1,6 @@
 import json
 import unittest
-from .view.endpoints import app
+from view.endpoints import app
 
 
 class TestEndpoints(unittest.TestCase):
@@ -8,6 +8,7 @@ class TestEndpoints(unittest.TestCase):
     self.app = app.test_client()
 
 def test_get_parcel_delivery_order_by_specific_user(self):
+  pass
 
 
 
