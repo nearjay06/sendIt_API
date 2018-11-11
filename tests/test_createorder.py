@@ -2,6 +2,7 @@ import unittest
 from view.endpoints import app,create_delivery_order,get_specific_parcel_delivery_order_with_ID
 import json
 
+
 class TestEndpoints(unittest.TestCase):
     def setUp(self):
         self.app = app.test_client()
