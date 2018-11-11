@@ -1,5 +1,5 @@
 import unittest
-from view.endpoints import app
+from view.endpoints import app,create_delivery_order,get_specific_parcel_delivery_order_with_ID
 import json
 
 
@@ -13,35 +13,69 @@ class TestEndpoints(unittest.TestCase):
         self.assertEqual(response.status_code,200)
         self.assertEqual(response.content_type,'application/json')
 
+    # def test_delivery_time_exceeds_specified_time(self):
+    #     with self.assertRaises(ValueError):
+	# 	create_delivery_order(1,'water',3000,20,5,'ntinda','nakawa')
 
+            
     def test_create_parcel_delivery_order(self):
-        response =self.app.post('/api/v1/parcels')
+        response = self.app.post('/api/v1/parcels',
+               data=json.dumps( {'parcelId': 3,
+                                 'parcel_name': 'cakes',
+                                 'parcel_price': 6000,
+                                 'delivery_time': 4,
+                                 'userId': 8,
+                                 'currentlocation':'bukoto',
+                                 'destination':'najjera'
+                                  }
+                              ),
+                    content_type='application/json')
+
         self.assertEqual(response.status_code,201)
-        self.assertEqual("delivery order created", response.json['message'])
+        content= response.get_json()
+        print(content)
 
+    def test_create_parcel_delivery_order_returns_errors(self):
+        response = self.app.post ('/api/v1/parcels',
+                    data=json.dumps( {'parcelId': 3,
+                                 'parcel_name': 'cakes',
+                                 'parcel_price': "abcd",
+                                 'delivery_time': 4,
+                                 'userId': 8,
+                                 'currentlocation':'bukoto',
+                                 'destination':'najjera'
+                                  }
+                              ),
+                    content_type='application/json')
+                        
+        self.assertEqual(response.status_code,401)
+        content=response.get_json()
+        print(content)
 
-    def test_to_cancel_specific_parcel_delivery_order(self):
-        response = self.app.put('/api/v1/parcels/1')
+    def test_get_specific_parcel_delivery_order_with_ID(self):
+        response =self.app.get('/api/v1/parcels/1')
         self.assertEqual(response.status_code,200)
 
-    def test_post_endpoint_errors_that_returns_400(self):
-        response = self.app.post ('/api/v1/parcels',
-                    data=json.dumps( {'id': 0
-                                        }
-                                ),
-                        content_type='application/json')
-                    
-        self.assertEqual(response.status_code,400)
+    # def test_get_specific_delivery_order_with_id(self):
+    #     response = self.app.get('/api/v1/parcels/1')
+    #     response_json = json.loads(response.data.decode())
+    #     self.assertIn("delivery order is not in the list", response_json[])
+
+
+    def test_to_cancel_specific_parcel_delivery_order_with_ID(self):
+        response = self.app.delete('/api/v1/parcels/1')
+        self.assertEqual(response.status_code,500)
 
 
 
 
 
-# def test_get_specific_parcel_delivery_order(self):
-#  response =self.app.get('/api/v1/parcels/<parcelId>')
 
 
- # def test_get_parcel_delivery_order_by_specific_user(self):
+
+
+
+
 
 
 

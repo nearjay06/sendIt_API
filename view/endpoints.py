@@ -133,19 +133,9 @@ def cancel_specific_delivery_order_with_ID(parcelId):
 
     
 
-    # a=0
-    # for parcelId in delivery_orders:
-    #   if delivery_orders['parcelId'] == parcelId:
-    #     del delivery_orders[a] 
-    #     return jsonify ({'message':'delivery order terminated'}), 200
-    #   a+=1
-             
-    # return jsonify({"message": 'delivery order does not exit'}), 205
+   
 
-
-    # order = Orders(parcelId,parcel_name,parcel_price,delivery_time,userId,currentlocation,destination)
-    # order.remove(order.make_delivery_order())
-    # return jsonify({'message':'delivery order has been terminated'}),410
+    
 
 
 
