@@ -108,7 +108,7 @@ def cancel_specific_delivery_order(parcelId):
         return jsonify ({'message':'delivery order terminated'}), 200
       a+=1
              
-    return jsonify({"message": 'delivery order does not exit'}), 205
+    return jsonify({"message": 'delivery order does not exit'}),205
 
 
 
