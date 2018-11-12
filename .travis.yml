@@ -5,13 +5,9 @@ python:
 
 install:
   - pip install -r requirements.txt
-  - pip install coverage
-  - pip install overalls
 
 script:
-  - pytest -v --cov tests --cov-report term-missing
-  - coverage xml
-  - coverage report
+  - pytest
 
 after_success:
   - coveralls
