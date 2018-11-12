@@ -7,9 +7,7 @@ tests/__pycache__
 /tests/__pycache__
 venv/
 venv
-<<<<<<< HEAD
-
-=======
->>>>>>> ft-specificuser-161745992
+/venv
+/venv/
 .vscode
 .pytest_cache
