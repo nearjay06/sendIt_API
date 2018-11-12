@@ -7,12 +7,6 @@
 
 
 
-
-
-
-
-
-
 PROJECT TITLE: SENDIT PROJECT - CHALLENGE 2
 
 SendIT is a courier service api.
