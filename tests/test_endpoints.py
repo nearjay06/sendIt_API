@@ -1,5 +1,5 @@
 import unittest
-from view.endpoints import app,create_delivery_order,get_specific_parcel_delivery_order_with_ID
+from api.view.endpoints import *
 import json
 
 
@@ -68,7 +68,7 @@ class TestEndpoints(unittest.TestCase):
 
     def test_cancel_delivery_order_with_Specific_ID(self):
         response = self.app.put('/api/v1/entries/1')
-        self.assertEqual(response.status_code,200)
+        self.assertEqual(response.status_code, 404)
 
 
 

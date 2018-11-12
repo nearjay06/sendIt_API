@@ -1,7 +1,5 @@
-from view.endpoints import app
-
-
-
+from flask import Flask
+from api import app
 
 
 

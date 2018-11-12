@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request,abort
-from model.api_class import Orders
-app = Flask(__name__)
+from api.model.api_class import Orders
+from api import app
 
 delivery_orders=[]
 
