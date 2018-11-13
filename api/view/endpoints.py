@@ -94,7 +94,7 @@ def get_specific_parcel_delivery_order_with_ID(parcelId):
 
   
 @app.route('/api/v1/users/<int:userId>/parcels',methods=['GET'])
-def get_delivery_order_by_specific_user_with_ID(userId):
+def get_delivery_order_by_specific_user_with_user_ID(userId):
   for order in delivery_orders:
     if order['userId'] == userId:
       return jsonify(order)
@@ -124,8 +124,8 @@ def cancel_specific_delivery_order_with_ID(parcelId):
     destination = service.get('destination')
 
     order = 0
-    for order['parcelId'] in delivery_orders:
-      if order['parcelId'] == parcelId:
+    for order['parcel_name'] in delivery_orders:
+      if order['parcel_name'] == parcel_name:
          del delivery_orders[order] 
       return jsonify ({'message':'delivery order has been terminated'}), 410
 
@@ -145,13 +145,5 @@ def cancel_specific_delivery_order_with_ID(parcelId):
 #     destination = service.get('destination')
 
     
-#     for order in delivery_orders:
-#       if order['parcelId'] == parcelId:
-#          del delivery_orders[order] 
-#       return jsonify ({'message':'delivery order has been terminated'}), 410
 
-#       if order['parcel_name'] == service['parcel_name']:
-#         del delivery_orders[order] 
-     
-#       return jsonify({'message':'delivery order terminated'}),205
 
