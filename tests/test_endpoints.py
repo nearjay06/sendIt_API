@@ -77,21 +77,22 @@ class TestEndpoints(unittest.TestCase):
 
     def test_get_order_by_user_with_user_id(self):
         response = self.app.get('/api/v1/parcels/1')
-        self.assertIsInstance('user_email',User,"message")
+        self.assertNotIn('destination',Users,"message")
+        
 
+    def test_get_order_by_user_with_user_id(self):
+         response = self.app.get('/api/v1/parcels/1')
+         self.assertEqual(response.status_code,200)
 
+    
 
-
-
-
-
-
-     #def test_get_order_by_user_with_user_id(self):
      #def test_delete_parcel_order_with_parcel_id(self):
      #def test_cancel_parcel_order_with_with_parcel_id(self):
 
 
     
+
+
 
 if __name__== '__main__':
  unittest.main()
