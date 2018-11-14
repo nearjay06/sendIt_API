@@ -1,6 +1,7 @@
 class Orders:
-    def __init__(self,parcelId,name,price,time,destination):
+    def __init__(self,parcelId,userId,name,price,time,destination):
        self.parcelId = parcelId
+       self.userId = userId
        self.parcel_name = name
        self.parcel_price = price
        self.delivery_time = time
@@ -9,10 +10,11 @@ class Orders:
     def make_delivery_order(self):
       service ={
           "parcelId": self.parcelId,
+          "userId": self.userId,
           "parcel_name": self.parcel_name,
           "parcel_price": self.parcel_price,
           "delivery_time":self.delivery_time,
-          "destination" : self.destination,
+          "destination" : self.destination
          
         }
       return service

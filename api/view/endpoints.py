@@ -3,13 +3,16 @@ from api.model.api_class import Orders
 from api import app
 
 delivery_orders=[]
-user = []
+user =[]
+delivery_orders.extend(user)
+
 
 @app.route('/api/v1/parcels', methods=['POST'])
 def create_delivery_order():
     service = request.get_json()
     
     parcelId = len(delivery_orders)+1
+    userId = len(delivery_orders)+1
     parcel_name = service.get('parcel_name')
     parcel_price = service.get('parcel_price')
     delivery_time = service.get('delivery_time')
@@ -31,7 +34,7 @@ def create_delivery_order():
     if delivery_time > 16:
       return jsonify({'message':'delivery should be in less than 16 hours'}),406
 
-    order = Orders(parcelId,parcel_name,parcel_price,delivery_time,destination)
+    order = Orders(parcelId,userId,parcel_name,parcel_price,delivery_time,destination)
     delivery_orders.append(order.make_delivery_order())
     return jsonify(delivery_orders),201
 
@@ -65,18 +68,22 @@ def get_specific_parcel_delivery_order_with_parcel_ID(parcelId):
             
 
 @app.route('/api/v1/users/<int:userId>/parcels',methods=['GET'])
-def deliver_to_user(self,userId,user_name):
+def deliver_to_user(self,userId,username):
   trades = request.get_json()
   for client in user:
     if client['id'] == userId:
-      return ('user_name'),200
+      return ('username'),200 
     else:
       return jsonify({'message':'user is not in the list'}),204
 
 
-
-
-
+@app.route('/api/v1/parcels/<int:parcelId>', methods =['GET'])
+def get_specific_user_order_with_user_ID(userId):
+  trades = request.get_json()
+  for client in user:
+    if client['Id'] == userId:
+      return jsonify(user),200
+      return jsonify({'message':'user is not in the list'}),400
 
 # @app.route('/api/v1/parcels/<int:parcelId>',methods=['DELETE'])
 # def cancel_specific_delivery_order_with_ID(parcelId):
@@ -91,7 +98,7 @@ def deliver_to_user(self,userId,user_name):
 
 #     order = 0
 #     for order['parcel_name'] in delivery_orders:
-#       if order['parcel_name'] == parcel_name:
+#       if order['Id'] == parcelId:
 #          del delivery_orders[order] 
 #       return jsonify ({'message':'delivery order has been terminated'}), 410
 
@@ -100,10 +107,10 @@ def deliver_to_user(self,userId,user_name):
 
 
 @app.route('/api/v1/parcels/<int:parcelId>',methods=['DELETE'])
-def make_delivery_order(self,parcelId,parcel_name):
+def make_delivery_order(self,parcelId):
   service = request.get_json()
   for order in delivery_orders:
-    if order['parcel_name'] == parcel_name:
+    if order['Id'] == parcelId:
       del delivery_orders[order] 
       return jsonify ({'message':'delivery order has been terminated'}), 410
     else:
@@ -114,8 +121,8 @@ def modify_parcel_delivery_order_with_ID(parcelId):
   service = request.get_json()
   for order in delivery_orders:
     if order['id'] == parcelId:
-      order.remove('parcel_name')
-      return jsonify ({'message':'order has been removed'}),200
+      order.put('parcel_name')
+      return jsonify ({'message':'order has been cancelled'}),200
 
 
 

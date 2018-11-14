@@ -52,11 +52,6 @@ class TestEndpoints(unittest.TestCase):
         response =self.app.get('/api/v1/parcels/1')
         self.assertEqual(response.status_code,200)
 
-
-
-
-
-        
     # def test_get_specific_parcel_delivery_order_with_parcelId(self):
     #     response = self.app.get('/api/v1/parcels/1')
     #     response = json.loads(response.data.decode())
@@ -69,8 +64,32 @@ class TestEndpoints(unittest.TestCase):
         self.assertEqual(response.status_code,500)
 
     def test_put_cancel_delivery_order_with_specific_ID(self):
-        response = self.app.put('/api/v1/entries/1')
-        self.assertEqual(response.status_code, 404)
+        response = self.app.put('/api/v1/parcels/1')
+        self.assertEqual(response.status_code, 405)
+
+    def test_post_delivery_order(self):
+        response = self.app.post('/api/v1/parcels')
+        self.assertTrue({'please add parcel name','message'},True)
+
+    def test_get_delivery_order(self):
+        response = self.app.get('/api/v1/parcels')
+        self.assertNotIsInstance('username',Orders,"message")
+
+    def test_get_order_by_user_with_user_id(self):
+        response = self.app.get('/api/v1/parcels/1')
+        self.assertIsInstance('user_email',User,"message")
+
+
+
+
+
+
+
+
+     #def test_get_order_by_user_with_user_id(self):
+     #def test_delete_parcel_order_with_parcel_id(self):
+     #def test_cancel_parcel_order_with_with_parcel_id(self):
+
 
     
 
