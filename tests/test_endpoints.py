@@ -84,11 +84,10 @@ class TestEndpoints(unittest.TestCase):
          response = self.app.get('/api/v1/parcels/1')
          self.assertEqual(response.status_code,200)
 
-    
+    def test_delete_parcel_order_with_parcel_id(self):
+        response = self.app.get('/api/v1/parcels/1')
+        self.assertEqual(response.status_code,200)
 
-
-
-     #def test_delete_parcel_order_with_parcel_id(self):
      #def test_cancel_parcel_order_with_with_parcel_id(self):
 
 

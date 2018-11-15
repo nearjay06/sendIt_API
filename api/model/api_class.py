@@ -37,3 +37,4 @@ class Users:
          }
 
        return trades
+

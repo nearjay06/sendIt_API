@@ -7,7 +7,6 @@ user =[]
 delivery_orders.extend(user)
 
 
-
 @app.route('/api/v1/parcels', methods=['POST'])
 def create_delivery_order():
     service = request.get_json()
@@ -86,6 +85,27 @@ def get_specific_user_order_with_user_ID(userId):
       return jsonify(user),200
       return jsonify({'message':'user is not in the list'}),400
 
+
+
+@app.route('/api/v1/parcels/<int:parcelId>',methods=['DELETE'])
+def make_delivery_order(self,parcelId):
+  for order in delivery_orders:
+    if order['Id'] == parcelId:
+      del delivery_orders[order] 
+      return jsonify ({'message':'delivery order has been terminated'}), 410
+    else:
+      return jsonify({"message": 'delivery order does not exit'}), 205
+
+@app.route('/api/v1/parcels/<int:parcelId>/cancel',methods=['PUT'])
+def modify_parcel_delivery_order_with_ID(parcelId):
+  for order in delivery_orders:
+    if order['id'] == parcelId:
+      order.put('parcel_name')
+      return jsonify ({'message':'order has been cancelled'}),200
+
+
+
+
 # @app.route('/api/v1/parcels/<int:parcelId>',methods=['DELETE'])
 # def cancel_specific_delivery_order_with_ID(parcelId):
 #     service = request.get_json()
@@ -105,25 +125,6 @@ def get_specific_user_order_with_user_ID(userId):
 
 #       order +=1 
 #       return jsonify({"message": 'delivery order does not exit'}), 205
-
-
-@app.route('/api/v1/parcels/<int:parcelId>',methods=['DELETE'])
-def make_delivery_order(self,parcelId):
-  for order in delivery_orders:
-    if order['Id'] == parcelId:
-      del delivery_orders[order] 
-      return jsonify ({'message':'delivery order has been terminated'}), 410
-    else:
-      return jsonify({"message": 'delivery order does not exit'}), 205
-
-@app.route('/api/v1/parcels/<int:parcelId>/cancel',methods=['PUT'])
-def modify_parcel_delivery_order_with_ID(parcelId):
-  service = request.get_json()
-  for order in delivery_orders:
-    if order['id'] == parcelId:
-      order.put('parcel_name')
-      return jsonify ({'message':'order has been cancelled'}),200
-
 
 
 
