@@ -52,11 +52,11 @@ class TestEndpoints(unittest.TestCase):
         response =self.app.get('/api/v1/parcels/1')
         self.assertEqual(response.status_code,200)
 
-    # def test_get_specific_parcel_delivery_order_with_parcelId(self):
-    #     response = self.app.get('/api/v1/parcels/1')
-    #     response = json.loads(response.data.decode())
-    #     self.assertEqual(response.status_code,200)
-    #     self.assertIn('delivery order not found',data['message'])
+    def test_get_specific_parcel_delivery_order_with_parcelId(self):
+        response = self.app.get('/api/v1/parcels/1')
+        # response = json.loads(response.data.decode())
+        self.assertEqual(response.status_code,200)
+        # self.assertIn('delivery order not found',data['message'])
 
 
     def test_to_cancel_specific_parcel_delivery_order_with_ID(self):
@@ -85,6 +85,8 @@ class TestEndpoints(unittest.TestCase):
          self.assertEqual(response.status_code,200)
 
     
+
+
 
      #def test_delete_parcel_order_with_parcel_id(self):
      #def test_cancel_parcel_order_with_with_parcel_id(self):

@@ -7,6 +7,7 @@ user =[]
 delivery_orders.extend(user)
 
 
+
 @app.route('/api/v1/parcels', methods=['POST'])
 def create_delivery_order():
     service = request.get_json()
@@ -108,7 +109,6 @@ def get_specific_user_order_with_user_ID(userId):
 
 @app.route('/api/v1/parcels/<int:parcelId>',methods=['DELETE'])
 def make_delivery_order(self,parcelId):
-  service = request.get_json()
   for order in delivery_orders:
     if order['Id'] == parcelId:
       del delivery_orders[order] 
