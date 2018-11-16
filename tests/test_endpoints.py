@@ -13,11 +13,7 @@ class TestEndpoints(unittest.TestCase):
         self.assertEqual(response.status_code,200)
         self.assertEqual(response.content_type,'application/json')
 
-    # def test_delivery_time_exceeds_specified_time(self):
-    #     with self.assertRaises(ValueError):
-	# 	create_delivery_order(1,'water',3000,20,5,'ntinda','nakawa')
-
-            
+                
     def test_create_parcel_delivery_order(self):
         response = self.app.post('/api/v1/parcels',
                data=json.dumps( {'parcelId': 3,
@@ -56,28 +52,46 @@ class TestEndpoints(unittest.TestCase):
         response =self.app.get('/api/v1/parcels/1')
         self.assertEqual(response.status_code,200)
 
-    # def test_get_specific_delivery_order_with_id(self):
-    #     response = self.app.get('/api/v1/parcels/1')
-    #     response_json = json.loads(response.data.decode())
-    #     self.assertIn("delivery order is not in the list", response_json[])
+    def test_get_specific_parcel_delivery_order_with_parcelId(self):
+        response = self.app.get('/api/v1/parcels/1')
+        # response = json.loads(response.data.decode())
+        self.assertEqual(response.status_code,200)
+        # self.assertIn('delivery order not found',data['message'])
 
 
     def test_to_cancel_specific_parcel_delivery_order_with_ID(self):
         response = self.app.delete('/api/v1/parcels/1')
         self.assertEqual(response.status_code,500)
 
-    def test_cancel_delivery_order_with_Specific_ID(self):
-        response = self.app.put('/api/v1/entries/1')
-        self.assertEqual(response.status_code, 404)
+    def test_put_cancel_delivery_order_with_specific_ID(self):
+        response = self.app.put('/api/v1/parcels/1')
+        self.assertEqual(response.status_code, 405)
+
+    def test_post_delivery_order(self):
+        response = self.app.post('/api/v1/parcels')
+        self.assertTrue({'please add parcel name','message'},True)
+
+    def test_get_delivery_order(self):
+        response = self.app.get('/api/v1/parcels')
+        self.assertNotIsInstance('username',Orders,"message")
+
+    def test_get_order_by_user_with_user_id(self):
+        response = self.app.get('/api/v1/parcels/1')
+        self.assertNotIn('destination',Users,"message")
+        
+
+    def test_get_order_by_user_with_user_id(self):
+         response = self.app.get('/api/v1/parcels/1')
+         self.assertEqual(response.status_code,200)
+
+    def test_delete_parcel_order_with_parcel_id(self):
+        response = self.app.get('/api/v1/parcels/1')
+        self.assertEqual(response.status_code,200)
+
+     #def test_cancel_parcel_order_with_with_parcel_id(self):
 
 
-
-
-
-
-
-
-
+    
 
 
 

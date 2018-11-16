@@ -1,9 +1,10 @@
 [![Build Status](https://travis-ci.org/nearjay06/sendIt_API.svg?branch=develop)](https://travis-ci.org/nearjay06/sendIt_API)
 
+[![Coverage Status](https://coveralls.io/repos/github/nearjay06/sendIt_API/badge.svg?branch=develop)](https://coveralls.io/github/nearjay06/sendIt_API?branch=develop)
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/396dd64d1a390b03fcd4/maintainability)](https://codeclimate.com/github/nearjay06/sendIt_API/maintainability)
 
-
-
+[![Test Coverage](https://api.codeclimate.com/v1/badges/396dd64d1a390b03fcd4/test_coverage)](https://codeclimate.com/github/nearjay06/sendIt_API/test_coverage)
 
 
 PROJECT TITLE: SENDIT PROJECT - CHALLENGE 2
