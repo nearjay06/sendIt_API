@@ -53,7 +53,6 @@ def get_all_parcel_delivery_orders():
 
 @app.route('/api/v1/parcels/<int:parcelId>', methods =['GET'])
 def get_specific_parcel_delivery_order_with_parcel_ID(parcelId):
-  service = request.get_json()
   for order in delivery_orders:
     if order['parcelId'] == parcelId:
       return jsonify(order),200
@@ -69,7 +68,6 @@ def get_specific_parcel_delivery_order_with_parcel_ID(parcelId):
 
 @app.route('/api/v1/users/<int:userId>/parcels',methods=['GET'])
 def deliver_to_user(self,userId,username):
-  trades = request.get_json()
   for client in user:
     if client['id'] == userId:
       return ('username'),200 
@@ -79,7 +77,6 @@ def deliver_to_user(self,userId,username):
 
 @app.route('/api/v1/parcels/<int:parcelId>', methods =['GET'])
 def get_specific_user_order_with_user_ID(userId):
-  trades = request.get_json()
   for client in user:
     if client['Id'] == userId:
       return jsonify(user),200
