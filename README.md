@@ -6,7 +6,6 @@
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/396dd64d1a390b03fcd4/test_coverage)](https://codeclimate.com/github/nearjay06/sendIt_API/test_coverage)
 
-
 PROJECT TITLE: SENDIT PROJECT - CHALLENGE 2
 
 SendIT is a courier service api.
