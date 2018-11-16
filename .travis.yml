@@ -8,6 +8,7 @@ install:
 
 script:
   - pytest
+  - coverage report
 
 after_success:
   - coveralls
