@@ -53,17 +53,16 @@ def get_all_parcel_delivery_orders():
 
 @app.route('/api/v1/parcels/<int:parcelId>', methods =['GET'])
 def get_specific_parcel_delivery_order_with_parcel_ID(parcelId):
-  service = request.get_json()
   for order in delivery_orders:
     if order['parcelId'] == parcelId:
       return jsonify(order),200
-      return jsonify({'message':'delivery order not found'}),400
+    return jsonify({'message':'delivery order not found'}),400
 
-      if not parcelId:
-        return jsonify({'message':'parcelId does not exist'})
+    if not parcelId:
+      return jsonify({'message':'parcelId does not exist'})
 
-      if isinstance (parcelId,str):
-        return jsonify({'message':'parcelId cannot be a string'}),400
+    if isinstance (parcelId,str):
+      return jsonify({'message':'parcelId cannot be a string'}),400
 
             
 
